@@ -25,7 +25,7 @@ public class InputArguments {
             jCommander.parse(args);
             inputArgs.validateCommand();
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            WriterJson.writeErrorToJson(e.getMessage(),null);
             jCommander.usage();
             System.exit(1);
         }

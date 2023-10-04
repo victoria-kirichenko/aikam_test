@@ -1,0 +1,24 @@
+{
+  "type" : "search",
+  "results" : [ {
+    "criteria" : {
+      "lastName" : "Doe"
+    },
+    "results" : [ {
+      "lastName" : "Doe",
+      "firstName" : "John"
+    } ]
+  }, {
+    "criteria" : {
+      "productName" : "Laptop",
+      "minTimes" : "1"
+    },
+    "results" : [ {
+      "lastName" : "Doe",
+      "firstName" : "John"
+    }, {
+      "lastName" : "Johnson",
+      "firstName" : "Michael"
+    } ]
+  } ]
+}

@@ -1,0 +1,6 @@
+{
+  "criterias": [
+    {"lastName": "Doe"},
+    {"productName": "Laptop", "minTimes": 1}
+  ]
+}
