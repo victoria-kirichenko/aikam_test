@@ -1,6 +1,8 @@
 {
   "criterias": [
     {"lastName": "Doe"},
-    {"productName": "Laptop", "minTimes": 1}
+    {"productName": "Laptop", "minTimes": 1},
+    {"minExpences": 112, "maxExpences": 4000},
+    {"badCustomers": 3}
   ]
 }

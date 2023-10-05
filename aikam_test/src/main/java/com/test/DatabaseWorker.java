@@ -31,7 +31,7 @@ public class DatabaseWorker {
             statement.close();
             connection.close();
         } catch (SQLException e) {
-            throw new ErrorResponse("An error occurred while processing the request.");
+            throw new ErrorResponse(e.getMessage());
         }
         return result;
     }
@@ -59,7 +59,61 @@ public class DatabaseWorker {
             statement.close();
             connection.close();
         } catch (SQLException e) {
-            throw new ErrorResponse("An error occurred while processing the request.");
+            throw new ErrorResponse(e.getMessage());
+        }
+        return result;
+    }
+
+    public static List<Object[]> searchByMinAndMaxExpences(double minExpences, double maxExpences) {
+        List<Object[]> result = new ArrayList<>();
+        try {
+            Connection connection = DriverManager.getConnection(url, username, password);
+            String sql = "select * from searchByMinAndMaxExpencesFunction(?, ?)";
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            statement.setDouble(1, minExpences);
+            statement.setDouble(2, maxExpences);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String resultLastName = resultSet.getString("last_name");
+                String resultFirstName = resultSet.getString("first_name");
+                Object[] rowData = {"lastName", resultLastName, "firstName", resultFirstName};
+                result.add(rowData);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new ErrorResponse(e.getMessage());
+        }
+        return result;
+    }
+    public static List<Object[]> searchByBadCustomers(int badCustomers) {
+        List<Object[]> result = new ArrayList<>();
+        try {
+            Connection connection = DriverManager.getConnection(url, username, password);
+            String sql = "select * from searchByBadCustomersFunction(?)";
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            statement.setInt(1, badCustomers);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String resultLastName = resultSet.getString("last_name");
+                String resultFirstName = resultSet.getString("first_name");
+                Object[] rowData = {"lastName", resultLastName, "firstName", resultFirstName};
+                result.add(rowData);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new ErrorResponse(e.getMessage());
         }
         return result;
     }

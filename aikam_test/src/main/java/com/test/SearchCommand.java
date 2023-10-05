@@ -25,7 +25,6 @@ public class SearchCommand {
                         List<Object[]> result = DatabaseWorker.searchByLastName(lastName);
                         res.add(result);
                         criterias.add(new String[] {"lastName", lastName});
-//                        WriterJson.writeResultToJson(result, outputFile, new String[] {"lastName", lastName});
                     } catch (ErrorResponse e) {
                         WriterJson.writeErrorToJson(e.getMessage(), outputFile);
                         System.exit(1);
@@ -39,23 +38,35 @@ public class SearchCommand {
                         List<Object[]> result = DatabaseWorker.searchByProductsAndCount(productName, minTimes);
                         res.add(result);
                         criterias.add(new String[] {"productName", productName, "minTimes", String.valueOf(minTimes)});
-//                        WriterJson.writeResultToJson(result, outputFile,
-//                                new String[] {"productName", productName, "minTimes", String.valueOf(minTimes)});
+                    } catch (ErrorResponse e) {
+                        WriterJson.writeErrorToJson(e.getMessage(), outputFile);
+                        System.exit(1);
+                    }
+                } else if (criteriaNode.has("minExpenses") && criteriaNode.has("maxExpenses")) {
+                    double minExpenses = criteriaNode.get("minExpenses").asDouble();
+                    double maxExpenses = criteriaNode.get("maxExpenses").asDouble();
+
+                    try {
+                        List<Object[]> result = DatabaseWorker.searchByMinAndMaxExpences(minExpenses, maxExpenses);
+                        res.add(result);
+                        criterias.add(new String[] {"minExpences", String.valueOf(minExpenses),
+                                "maxExpences", String.valueOf(maxExpenses)});
+                    } catch (ErrorResponse e) {
+                        WriterJson.writeErrorToJson(e.getMessage(), outputFile);
+                        System.exit(1);
+                    }
+                } else if (criteriaNode.has("badCustomers")) {
+                    int badCustomers = criteriaNode.get("badCustomers").asInt();
+
+                    try {
+//                        List<Object[]> result = DatabaseWorker.searchByBadCustomers(badCustomers);
+//                        res.add(result);
+//                        criterias.add(new String[] {"badCustomers", String.valueOf(badCustomers)});
                     } catch (ErrorResponse e) {
                         WriterJson.writeErrorToJson(e.getMessage(), outputFile);
                         System.exit(1);
                     }
                 }
-//                else if (criteriaNode.has("minExpenses") && criteriaNode.has("maxExpenses")) {
-//                    double minExpenses = criteriaNode.get("minExpenses").asDouble();
-//                    double maxExpenses = criteriaNode.get("maxExpenses").asDouble();
-//
-//                    processByExpenses(minExpenses, maxExpenses);
-//                } else if (criteriaNode.has("badCustomers")) {
-//                    int badCustomers = criteriaNode.get("badCustomers").asInt();
-//                    processByBadCustomers(badCustomers);
-//                }
-                // Другие обработки для остальных критериев
             }
             WriterJson.writeResultToJson(res, outputFile, criterias);
         } catch (IOException e) {
