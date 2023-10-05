@@ -47,3 +47,18 @@ begin
     limit bad_customers;
 end;
 $$ language plpgsql;
+
+create or replace function statFunction(startDate date, endDate date)
+returns table (first_name varchar, last_name varchar, product_name varchar, price double precision) as $$
+begin
+    return query
+    select c.first_name, c.last_name, p.name, p.price
+    from customers c
+    join purchases pu on c.id = pu.customer_id
+    join products p on pu.product_id = p.id
+    where pu.purchase_date between startDate and endDate
+    and extract(dow from pu.purchase_date) not in (0, 6)
+    group by c.first_name, c.last_name, p.name, p.price
+    order by c.last_name, c.first_name;
+end;
+$$ language plpgsql;

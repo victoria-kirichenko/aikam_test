@@ -1,6 +1,7 @@
-package com.test;
+package com.test.database;
 
-import java.math.BigDecimal;
+import com.test.response.ErrorResponse;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -108,6 +109,36 @@ public class DatabaseWorker {
                 String resultLastName = resultSet.getString("last_name");
                 String resultFirstName = resultSet.getString("first_name");
                 Object[] rowData = {"lastName", resultLastName, "firstName", resultFirstName};
+                result.add(rowData);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new ErrorResponse(e.getMessage());
+        }
+        return result;
+    }
+    public static List<Object[]> stat(Date startDate, Date endDate) {
+        List<Object[]> result = new ArrayList<>();
+        try {
+            Connection connection = DriverManager.getConnection(url, username, password);
+            String sql = "select * from statFunction(?, ?)";
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            statement.setDate(1, startDate);
+            statement.setDate(2, endDate);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String resultLastName = resultSet.getString("last_name");
+                String resultFirstName = resultSet.getString("first_name");
+                String resultProductName = resultSet.getString("product_name");
+                double resultExpenses = resultSet.getDouble("price");
+
+                Object[] rowData = {"name", resultLastName + " " + resultFirstName, "name", resultProductName, "expenses", resultExpenses};
                 result.add(rowData);
             }
             resultSet.close();
