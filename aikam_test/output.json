@@ -1,0 +1,44 @@
+{
+  "type" : "search",
+  "results" : [ {
+    "criteria" : {
+      "lastName" : "Doe"
+    },
+    "results" : [ {
+      "lastName" : "Doe",
+      "firstName" : "John"
+    } ]
+  }, {
+    "criteria" : {
+      "productName" : "Laptop",
+      "minTimes" : "1"
+    },
+    "results" : [ {
+      "lastName" : "Doe",
+      "firstName" : "John"
+    }, {
+      "lastName" : "Johnson",
+      "firstName" : "Michael"
+    } ]
+  }, {
+    "criteria" : {
+      "minExpenses" : "600.0",
+      "maxExpenses" : "4000.0"
+    },
+    "results" : [ {
+      "lastName" : "Johnson",
+      "firstName" : "Michael"
+    }, {
+      "lastName" : "Doe",
+      "firstName" : "John"
+    } ]
+  }, {
+    "criteria" : {
+      "badCustomers" : "1"
+    },
+    "results" : [ {
+      "lastName" : "Johnson",
+      "firstName" : "Michael"
+    } ]
+  } ]
+}

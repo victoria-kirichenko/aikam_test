@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,10 +48,10 @@ public class SearchCommand {
                     double maxExpenses = criteriaNode.get("maxExpenses").asDouble();
 
                     try {
-                        List<Object[]> result = DatabaseWorker.searchByMinAndMaxExpences(minExpenses, maxExpenses);
+                        List<Object[]> result = DatabaseWorker.searchByMinAndMaxExpenses(minExpenses, maxExpenses);
                         res.add(result);
-                        criterias.add(new String[] {"minExpences", String.valueOf(minExpenses),
-                                "maxExpences", String.valueOf(maxExpenses)});
+                        criterias.add(new String[] {"minExpenses", String.valueOf(minExpenses),
+                                "maxExpenses", String.valueOf(maxExpenses)});
                     } catch (ErrorResponse e) {
                         WriterJson.writeErrorToJson(e.getMessage(), outputFile);
                         System.exit(1);
@@ -59,9 +60,9 @@ public class SearchCommand {
                     int badCustomers = criteriaNode.get("badCustomers").asInt();
 
                     try {
-//                        List<Object[]> result = DatabaseWorker.searchByBadCustomers(badCustomers);
-//                        res.add(result);
-//                        criterias.add(new String[] {"badCustomers", String.valueOf(badCustomers)});
+                        List<Object[]> result = DatabaseWorker.searchByBadCustomers(badCustomers);
+                        res.add(result);
+                        criterias.add(new String[] {"badCustomers", String.valueOf(badCustomers)});
                     } catch (ErrorResponse e) {
                         WriterJson.writeErrorToJson(e.getMessage(), outputFile);
                         System.exit(1);

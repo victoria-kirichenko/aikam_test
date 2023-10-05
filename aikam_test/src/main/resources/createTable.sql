@@ -7,7 +7,7 @@ create table customers (
 create table products (
     id serial primary key,
     name varchar(255),
-    price decimal(10, 2)
+    price double precision
 );
 
 create table purchases (

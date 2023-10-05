@@ -22,15 +22,28 @@ begin
 end;
 $$ language plpgsql;
 
-create or replace function searchByMinAndMaxExpences(min_expences double, max_expences double)
+create or replace function searchByMinAndMaxExpenses(min_expences double precision, max_expences double precision)
 returns table (first_name varchar, last_name varchar) as $$
 begin
     return query
-    select customers.first_name, customers.last_name, sum(products.price) as total_price
+    select customers.first_name, customers.last_name
     from purchases
     join customers on customers.id = purchases.customer_id
     join products on products.id = purchases.product_id
     group by customers.id, customers.first_name, customers.last_name
     having sum(products.price) between min_expences and max_expences;
+end;
+$$ language plpgsql;
+
+create or replace function searchByBadCustomersFunction(bad_customers int)
+returns table (first_name varchar, last_name varchar) as $$
+begin
+    return query
+    select customers.first_name, customers.last_name
+    from customers
+    left join purchases on customers.id = purchases.customer_id
+    group by customers.id
+    order by count(purchases.id) asc
+    limit bad_customers;
 end;
 $$ language plpgsql;

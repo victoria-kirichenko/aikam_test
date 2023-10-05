@@ -1,11 +1,12 @@
 package com.test;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseWorker {
-    private static String url = "jdbc:postgresql://localhost:5433/aikam_shop";
+    private static String url = "jdbc:postgresql://localhost:5432/aikam_shop";
     private static String username = "postgres";
     private static String password = "123";
 
@@ -64,16 +65,16 @@ public class DatabaseWorker {
         return result;
     }
 
-    public static List<Object[]> searchByMinAndMaxExpences(double minExpences, double maxExpences) {
+    public static List<Object[]> searchByMinAndMaxExpenses(double minExpenses, double maxExpenses) {
         List<Object[]> result = new ArrayList<>();
         try {
             Connection connection = DriverManager.getConnection(url, username, password);
-            String sql = "select * from searchByMinAndMaxExpencesFunction(?, ?)";
+            String sql = "select * from searchByMinAndMaxExpenses(?, ?)";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
-            statement.setDouble(1, minExpences);
-            statement.setDouble(2, maxExpences);
+            statement.setDouble(1, minExpenses);
+            statement.setDouble(2, maxExpenses);
 
             ResultSet resultSet = statement.executeQuery();
 

@@ -13,6 +13,7 @@ public class WriterJson {
     private static String errorFilePath = "error.json";
     public static void writeErrorToJson(String message, String filePath) {
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         ObjectNode objectNode = objectMapper.createObjectNode();
         objectNode.put("type", "error");
         objectNode.put("message", message);
