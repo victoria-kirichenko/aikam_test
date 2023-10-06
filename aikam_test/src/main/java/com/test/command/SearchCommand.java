@@ -4,15 +4,16 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.test.database.DatabaseWorker;
 import com.test.response.ErrorResponse;
-import com.test.WriterJson;
+import com.test.json.WriterJson;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchCommand {
-    public static void run(String inputFile, String outputFile) {
+public class SearchCommand implements Command {
+    @Override
+    public void run(String inputFile, String outputFile) {
         ObjectMapper objectMapper = new ObjectMapper();
         List<List<Object[]>> res = new ArrayList<>();
         List<String[]> criterias = new ArrayList<>();

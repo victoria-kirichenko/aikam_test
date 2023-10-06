@@ -19,6 +19,9 @@
     }, {
       "lastName" : "Johnson",
       "firstName" : "Michael"
+    }, {
+      "lastName" : "Lee",
+      "firstName" : "Sophia"
     } ]
   }, {
     "criteria" : {
@@ -27,6 +30,15 @@
     },
     "results" : [ {
       "lastName" : "Johnson",
+      "firstName" : "Alice"
+    }, {
+      "lastName" : "Lee",
+      "firstName" : "Sophia"
+    }, {
+      "lastName" : "Smith",
+      "firstName" : "Jane"
+    }, {
+      "lastName" : "Johnson",
       "firstName" : "Michael"
     }, {
       "lastName" : "Doe",
@@ -34,11 +46,17 @@
     } ]
   }, {
     "criteria" : {
-      "badCustomers" : "1"
+      "badCustomers" : "3"
     },
     "results" : [ {
-      "lastName" : "Johnson",
+      "lastName" : "Garcia",
       "firstName" : "Michael"
+    }, {
+      "lastName" : "Taylor",
+      "firstName" : "Daniel"
+    }, {
+      "lastName" : "Brown",
+      "firstName" : "Emma"
     } ]
   } ]
 }

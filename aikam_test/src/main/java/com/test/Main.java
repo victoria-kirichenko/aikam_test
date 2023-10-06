@@ -7,9 +7,9 @@ public class Main {
     public static void main(String[] args) {
         InputArguments inputArgs = InputArguments.parse(args);
         if (inputArgs.getCommand().equals("search")) {
-            SearchCommand.run(inputArgs.getInputFile(), inputArgs.getOutputFile());
+            new SearchCommand().run(inputArgs.getInputFile(), inputArgs.getOutputFile());
         } else {
-            StatCommand.run(inputArgs.getInputFile(), inputArgs.getOutputFile());
+            new StatCommand().run(inputArgs.getInputFile(), inputArgs.getOutputFile());
         }
     }
 }

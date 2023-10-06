@@ -2,6 +2,7 @@ package com.test;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import com.test.json.WriterJson;
 
 import java.io.File;
 

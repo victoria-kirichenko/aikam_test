@@ -3,6 +3,6 @@
     {"lastName": "Doe"},
     {"productName": "Laptop", "minTimes": 1},
     {"minExpenses": 600, "maxExpenses": 4000},
-    {"badCustomers": 1}
+    {"badCustomers": 3}
   ]
 }

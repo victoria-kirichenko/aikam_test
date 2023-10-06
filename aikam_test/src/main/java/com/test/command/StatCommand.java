@@ -4,18 +4,18 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.test.database.DatabaseWorker;
 import com.test.response.ErrorResponse;
-import com.test.WriterJson;
+import com.test.json.WriterJson;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 
-public class StatCommand {
-    public static void run(String inputFile, String outputFile) {
+public class StatCommand implements Command {
+    @Override
+    public void run(String inputFile, String outputFile) {
         ObjectMapper objectMapper = new ObjectMapper();
         List<List<Object[]>> res = new ArrayList<>();
         try {

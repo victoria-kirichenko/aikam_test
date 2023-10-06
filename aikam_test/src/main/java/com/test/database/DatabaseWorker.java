@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseWorker {
-    private static String url = "jdbc:postgresql://localhost:5432/aikam_shop";
+    private static String url = "jdbc:postgresql://localhost:5433/aikam_shop";
     private static String username = "postgres";
     private static String password = "123";
 

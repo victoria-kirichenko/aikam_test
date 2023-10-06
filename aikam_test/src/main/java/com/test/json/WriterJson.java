@@ -1,4 +1,4 @@
-package com.test;
+package com.test.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -77,37 +77,8 @@ public class WriterJson {
         int totalDays = getBusinessDaysBetweenDates(startDate, endDate);
         objectNode.put("totalDays", String.valueOf(totalDays));
 
-        ArrayNode customersArray = objectMapper.createArrayNode();
 
-        for (List<Object[]> customerData : data) {
-            ObjectNode customerNode = objectMapper.createObjectNode();
-            ArrayNode purchasesArray = objectMapper.createArrayNode();
-            double totalExpenses = 0;
-
-            ObjectNode purchaseNode = objectMapper.createObjectNode();
-            purchaseNode.put("name", String.valueOf(customerData.get(0)[3]));
-            purchaseNode.put("expenses", Double.valueOf(String.valueOf(customerData.get(0)[5])));
-
-            for (Object[] purchaseData : customerData) {
-                totalExpenses += Double.valueOf(String.valueOf(purchaseData[1]));
-                purchasesArray.add(purchaseNode);
-            }
-
-            customerNode.put("name", String.valueOf(customerData.get(0)[2]) + " " + String.valueOf(customerData.get(0)[3]));
-            customerNode.put("purchases", purchasesArray);
-            customerNode.put("totalExpenses", totalExpenses);
-            customersArray.add(customerNode);
-        }
-
-        double totalExpenses = 0;
-        for (List<Object[]> customerData : data) {
-            for (Object[] purchaseData : customerData) {
-                totalExpenses += Double.valueOf(String.valueOf(purchaseData[1]));
-            }
-        }
-        objectNode.put("customers", customersArray);
-        objectNode.put("totalExpenses", totalExpenses);
-        objectNode.put("avgExpenses", totalExpenses / customersArray.size());
+        // здесь должно было быть заполнение ObjectNode результатом операции stat
 
         try {
             objectMapper.writeValue(new File((filePath == null) ? errorFilePath : filePath), objectNode);
