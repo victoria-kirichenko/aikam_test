@@ -10,7 +10,6 @@ public class DatabaseWorker {
     private static String url = "jdbc:postgresql://localhost:5433/aikam_shop";
     private static String username = "postgres";
     private static String password = "123";
-
     public static List<Object[]> searchByLastName(String lastName) {
         List<Object[]> result = new ArrayList<>();
         try {
