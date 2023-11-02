@@ -1,4 +1,4 @@
-# Worker with DB and Json
+# Store data analyzer
 
 ## Общие требования
 * Используемый стэк: java 8, PostgreSQL, Maven
