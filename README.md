@@ -1,4 +1,4 @@
-# aikam_test
+# Worker with DB and Json
 
 ## Общие требования
 * Используемый стэк: java 8, PostgreSQL, Maven
